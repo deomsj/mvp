@@ -1,0 +1,27 @@
+{
+  "name": "mvp",
+  "version": "1.0.0",
+  "description": "The Algebra Gym",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "nf start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deomsj/mvp.git"
+  },
+  "author": "jesse deoms",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deomsj/mvp/issues"
+  },
+  "engines": {
+    "node": "6.10.0"
+  },
+  "homepage": "https://github.com/deomsj/mvp#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "foreman": "2.0.0"
+  }
+}
