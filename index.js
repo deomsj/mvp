@@ -5,7 +5,7 @@ app.set('port', process.env.PORT || 3000);
 
 app.get('/', function(req, res) {
   console.log('test');
-  res.send('Hello World!');
+  res.sendFile('client/index.html', { root: __dirname });
 });
 
 app.listen(app.get('port'), function() {
