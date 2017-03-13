@@ -1,2 +1,2 @@
-web: bin/web
+web: node index.js
 worker: bin/worker
