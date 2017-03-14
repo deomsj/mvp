@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html ng-app='algebraGym'>
+<html lang="en" ng-app="gym">
   <head>
+    <meta charset="utf-8" />
+    <title>The Algebra Gym</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
   </head>
   <body>
     <h1>The Algebra Gym</h1>
+    <div ng-view>
+      <div ng-controller="PracticeController">
+        <p> {{a}} </p>
+        <p> {{b}} </p>
+        <p> {{a + b}} </p>
+      </div>
+  <!--       <input type='text' ng-model='a' placeholder='argument a' />
+        <input type='text' ng-model='b' placeholder='argument b' />
+        <p> your answer is: {{(+a) + (+b)}} </p> -->
+    </div>
 
-    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
+    <script src="app.js"></script>
   </body>
 </html>
