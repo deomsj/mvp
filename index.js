@@ -8,7 +8,9 @@ var app = express();
 mongoose.Promise = global.Promise;
 
 // connect to mongo db named "gymLeaders"
-mongoose.connect('mongodb://localhost/gymLeaders');
+var localURI = 'mongodb://localhost/gymLeaders';
+var mLabURI = 'mongodb://algebragymmember:algebrain@ds131480.mlab.com:31480/heroku_8h9km61t';
+mongoose.connect(mLabURI);
 
 //log message when connection to db has been established
 var db = mongoose.connection;
