@@ -13,11 +13,18 @@
       <div ng-controller="SimpleAdditionController">
         <p> Points: {{points}} </p>
         <p> {{a}} + {{b}} =  </p>
-        <form ng-submit='checkAnswer()'>
+        <form ng-submit="checkAnswer()">
           <input type="text" ng-model="attempt" placeholder="your answer" />
           <button>Submit</button>
         </form>
         <p> {{display}} </p>
+      </div>
+
+      <div ng-controller="LeaderBoardController">
+        <h3>Leader Board</h3>
+        <ol>
+          <li ng-repeat="leader in leaders | orderBy:'-score' | limitTo:5">{{leader.name}}: {{leader.score}}</li>
+        </ol>
       </div>
 
     </div>

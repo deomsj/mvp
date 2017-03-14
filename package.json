@@ -4,7 +4,7 @@
   "description": "The Algebra Gym",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "mocha",
     "start": "node index.js"
   },
   "repository": {
@@ -22,6 +22,8 @@
   "homepage": "https://github.com/deomsj/mvp#readme",
   "dependencies": {
     "express": "^4.15.2",
-    "foreman": "2.0.0"
+    "foreman": "2.0.0",
+    "mocha": "^3.2.0",
+    "mongoose": "^4.9.0"
   }
 }
