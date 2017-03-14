@@ -3,10 +3,7 @@ var app = express();
 
 app.set('port', process.env.PORT || 3000);
 
-app.get('/', function(req, res) {
-  console.log('test');
-  res.sendFile('client/index.html', { root: __dirname });
-});
+app.use(express.static(__dirname + '/client'));
 
 app.listen(app.get('port'), function() {
   console.log('Algebra Gym App listening on port: ', app.get('port'));
