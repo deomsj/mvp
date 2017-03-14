@@ -8,5 +8,4 @@ var LeaderSchema = new Schema({
 
 var Leader = mongoose.model('leader', LeaderSchema);
 
-
 module.exports = Leader;
