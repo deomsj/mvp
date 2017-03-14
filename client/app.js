@@ -1,31 +1,51 @@
 var gym = angular.module('gym', ['ngRoute']);
 
-// gym.config(function($routeProvider){
-//   $routeProvider
-//     .when()
-// });
+gym.controller('GymController', function($scope, $http, $interval) {
+  ///////////
+  // Timer
+  //////////
+  $scope.timer = 15;
 
-// gym.factory('playRound', function() {
-//   $interval(function() {
+  var interval;
 
-//   });
-// });
+  $scope.play = function() {
+    $scope.timer = 15;
 
-gym.controller('SimpleAdditionController', function($scope, $http) {
+    interval = $interval(function() {
+      if ($scope.timer > 0) {
+        $scope.timer = $scope.timer - 1;
+      } else {
+        $scope.endRound();
+      }
+    }, 1000);
+  };
+
+  $scope.endRound = function() {
+    $interval.cancel(interval);
+    interval = undefined;
+    $scope.score = $scope.points;
+  };
+
+  /////////////////
+  // Practice Area
+  /////////////////
 
   $scope.update = function() {
-    $scope.points = $scope.points || 0;
     $scope.a = Math.ceil(Math.random() * 100);
     $scope.b = Math.ceil(Math.random() * 100);
     $scope.answer = $scope.a + $scope.b;
   };
 
+  //initialize view
+  $scope.points = 0;
   $scope.update();
 
   $scope.checkAnswer = function() {
     if ($scope.answer === +$scope.attempt) {
       $scope.display = 'Woohoo!!! Great Mathing!!!';
-      $scope.points++;
+      if (interval !== undefined) {
+        $scope.points++;
+      }
       $scope.update();
     } else {
       $scope.display = 'try again, you can do it ' + $scope.name + '!';
@@ -33,41 +53,17 @@ gym.controller('SimpleAdditionController', function($scope, $http) {
     $scope.attempt = '';
   };
 
-  // $scope.submitScore = function() {
-  //   var name = $scope.name;
-  //   var score = +$scope.score;
-
-  //   var leader = new Leader({
-  //     name: name,
-  //     score: score
-  //   });
-
-  //   return $http({
-  //     method: 'POST',
-  //     url: '/api/leaders',
-  //     data: leader
-  //   })
-  //   .then(function(resp) {
-  //     resp.data;
-  //   });
-  // };
-
-});
-
-gym.controller('LeaderBoardController', function($scope, $http) {
-
-  // $scope.leaders = [
-  //   {name: 'Chris', score: 9},
-  //   {name: 'Meg', score: 17},
-  //   {name: 'Danya', score: 12},
-  //   {name: 'Mohammad', score: 21},
-  //   {name: 'Darin', score: 3},
-  //   {name: 'Emily', score: 8},
-  // ];
+  /////////////////////////////
+  // send score to db
+  /////////////////////////////
 
   $scope.submitScore = function() {
     var name = $scope.name;
     var score = +$scope.score;
+
+    if (!score || !name) {
+      return;
+    }
 
     var newLeader = {
       name: name,
@@ -81,10 +77,16 @@ gym.controller('LeaderBoardController', function($scope, $http) {
       url: '/api/leaders',
       data: data
     })
-    .then(function(data) {
-      console.log(data);
+    .then(function() {
+      $scope.points = 0;
+      $scope.score = undefined;
+      $scope.getScores();
     });
   };
+
+  /////////////////////////////
+  // get data for Leaderboard
+  /////////////////////////////
 
   $scope.getScores = function() {
 

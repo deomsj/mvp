@@ -5,36 +5,47 @@
     <title>The Algebra Gym</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>The Algebra Gym</h1>
-    <div>
+    <div class="wrapper">
+      <h1>The Algebra Gym</h1>
+        <div ng-controller="GymController">
+          <button ng-click="play()">Train Brain</button>
+          <p class="stats"> Time Left: {{timer}} </p>
+          <p class="stats"> Points: {{points}} </p>
+          <p class="equation"> {{a}} + {{b}} =  </p>
+          <form class="equation" ng-submit="checkAnswer()">
+            <input type="text" placeholder="?" ng-model="attempt" />
+            <button>Submit</button>
+          </form>
+          <p>{{display}}</p>
 
-      <div ng-controller="SimpleAdditionController">
-        <p> Points: {{points}} </p>
-        <p> {{a}} + {{b}} =  </p>
-        <form ng-submit="checkAnswer()">
-          <input type="text" placeholder="your answer" ng-model="attempt" />
-          <button>Submit</button>
-        </form>
-        <p> {{display}} </p>
-      </div>
+          <form ng-submit="submitScore()">
+            <input type="text" placeholder="Enter Your Name"  ng-model="name" /> <br>
+            <button>Save Your Score</button>
+          </form>
+          <br>
 
-      <div ng-controller="LeaderBoardController">
-        <h3>Leader Board</h3>
-        <form ng-submit="submitScore()">
-          <input type="text" placeholder="Sign In"  ng-model="name" />
-          <input type="text" placeholder="Enter Score"  ng-model="score" />
-          <button>Submit</button>
-        </form>
-        <button ng-click="getScores()">Get Scores</button>
-        <ol>
-          <li ng-repeat="leader in leaders | orderBy:'-score' | limitTo:5">{{leader.name}}: {{leader.score}}</li>
-        </ol>
-      </div>
+          <div class="column">
+            <h3>Leader Board</h3>
+            <br>
+            <button ng-click="getScores()">Allstars</button>
+            <ol>
+              <li ng-repeat="leader in leaders | orderBy:'-score' | limitTo:5">{{leader.name}}: {{leader.score}}</li>
+            </ol>
+          </div>
 
+          <div class="column">
+            <h3>Your Best</h3>
+            <br>
+            <button ng-click="getScores()">My Top Scores</button>
+            <ol>
+              <li ng-repeat="leader in leaders | filter:{name: name} | orderBy:'-score' | limitTo:5" >{{leader.name}}: {{leader.score}}</li>
+            </ol>
+          </div>
+        </div>
     </div>
-
     <script src="app.js"></script>
   </body>
 </html>
