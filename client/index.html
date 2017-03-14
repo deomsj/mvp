@@ -9,19 +9,17 @@
   <body>
     <h1>The Algebra Gym</h1>
     <div ng-view>
-      <div ng-controller="PracticeController">
+
+      <div ng-controller="SimpleAdditionController">
         <p> Points: {{points}} </p>
-        <p> Constant: {{a}} </p>
-        <p> Constant: {{b}} </p>
+        <p> {{a}} + {{b}} =  </p>
         <form ng-submit='checkAnswer()'>
           <input type="text" ng-model="attempt" placeholder="your answer" />
           <button>Submit</button>
         </form>
         <p> {{display}} </p>
       </div>
-  <!--       <input type='text' ng-model='a' placeholder='argument a' />
-        <input type='text' ng-model='b' placeholder='argument b' />
-        <p> your answer is: {{(+a) + (+b)}} </p> -->
+
     </div>
 
     <script src="app.js"></script>

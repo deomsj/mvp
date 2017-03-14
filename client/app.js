@@ -1,6 +1,6 @@
 var gym = angular.module('gym', []);
 
-gym.controller('PracticeController', function($scope) {
+gym.controller('SimpleAdditionController', function($scope) {
 
   $scope.update = function(){
     $scope.points = $scope.points || 0;
@@ -11,11 +11,11 @@ gym.controller('PracticeController', function($scope) {
 
   $scope.checkAnswer = function() {
     if($scope.answer === +$scope.attempt){
-      $scope.display = 'Correct!';
+      $scope.display = 'Woohoo!!! Great Mathing!!!';
       $scope.points++;
       $scope.update();
     } else{
-      $scope.display = 'Wrong!';
+      $scope.display = 'try again, you can do it!';
     }
     $scope.attempt = '';
   };
