@@ -4,12 +4,12 @@ gym.controller('GymController', function($scope, $http, $interval) {
   ///////////
   // Timer
   //////////
-  $scope.timer = 15;
+  $scope.timer = 30;
 
   var interval;
 
   $scope.play = function() {
-    $scope.timer = 15;
+    $scope.timer = 30;
 
     interval = $interval(function() {
       if ($scope.timer > 0) {
@@ -31,9 +31,27 @@ gym.controller('GymController', function($scope, $http, $interval) {
   /////////////////
 
   $scope.update = function() {
-    $scope.a = Math.ceil(Math.random() * 100);
-    $scope.b = Math.ceil(Math.random() * 100);
-    $scope.answer = $scope.a + $scope.b;
+    var a = Math.ceil(Math.random() * 100) - 50;
+    var b = Math.ceil(Math.random() * 100) - 50;
+
+    var equationRandomizer = Math.random();
+
+    if (equationRandomizer > 0.2) {
+      $scope.equation = `${a} + x = ${b}`;
+      $scope.answer = b - a;
+    } else if (equationRandomizer > 0.4) {
+      $scope.equation = `${a} + ${b} = x`;
+      $scope.answer = a + b;
+    } else if (equationRandomizer > 0.6) {
+      $scope.equation = `${a} - ${b} = x`;
+      $scope.answer = a - b;
+    } else if (equationRandomizer > 0.8) {
+      $scope.equation = `${a} - x = ${b}`;
+      $scope.answer = a - b;
+    } else {
+      $scope.equation = `- x + ${a} = ${b}`;
+      $scope.answer = a - b;
+    }
   };
 
   //initialize view

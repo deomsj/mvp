@@ -8,18 +8,24 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div class="wrapper">
-      <h1>The Algebra Gym</h1>
-        <div ng-controller="GymController">
-          <button ng-click="play()">Train Brain</button>
-          <p class="stats"> Time Left: {{timer}} </p>
-          <p class="stats"> Points: {{points}} </p>
-          <p class="equation"> {{a}} + {{b}} =  </p>
+    <div class="wrapper" ng-controller="GymController">
+      <h1 ng-click="play()">The Algebra Gym</h1>
+        <div>
+          <img src="https://s-media-cache-ak0.pinimg.com/736x/b8/15/98/b81598918898c4afe64f2731a19e30b3.jpg" title="Click me to start the clock, keep the count, and compete!" ng-click="play()">
+          <p id="equation"> {{equation}} </p>
+          <br>
+          <br>
+          <p class="equation"> x = </p>
           <form class="equation" ng-submit="checkAnswer()">
             <input type="text" placeholder="?" ng-model="attempt" />
             <button>Submit</button>
           </form>
           <p>{{display}}</p>
+
+
+          <p class="stats"> Time Left: {{timer}} </p>
+          <br>
+          <p class="stats"> Points: {{points}} </p>
 
           <form ng-submit="submitScore()">
             <input type="text" placeholder="Enter Your Name"  ng-model="name" /> <br>
@@ -28,20 +34,20 @@
           <br>
 
           <div class="column">
-            <h3>Leader Board</h3>
+            <h3>Allstars</h3>
             <br>
-            <button ng-click="getScores()">Allstars</button>
+            <button ng-click="getScores()">Top Scores</button>
             <ol>
-              <li ng-repeat="leader in leaders | orderBy:'-score' | limitTo:5">{{leader.name}}: {{leader.score}}</li>
+              <li ng-repeat="leader in leaders | orderBy:'-score' | limitTo:5">{{leader.score}} : {{leader.name}} </li>
             </ol>
           </div>
 
           <div class="column">
             <h3>Your Best</h3>
             <br>
-            <button ng-click="getScores()">My Top Scores</button>
+            <button ng-click="getScores()">Person Records</button>
             <ol>
-              <li ng-repeat="leader in leaders | filter:{name: name} | orderBy:'-score' | limitTo:5" >{{leader.name}}: {{leader.score}}</li>
+              <li ng-repeat="leader in leaders | filter:{name: name} | orderBy:'-score' | limitTo:5" > {{leader.score}} : {{leader.name}} </li>
             </ol>
           </div>
         </div>
