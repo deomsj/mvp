@@ -10,6 +10,7 @@ gym.controller('GymController', function($scope, $http, $interval) {
 
   $scope.play = function() {
     $scope.timer = 30;
+    $scope.points = 0;
 
     interval = $interval(function() {
       if ($scope.timer > 0) {
@@ -66,7 +67,11 @@ gym.controller('GymController', function($scope, $http, $interval) {
       }
       $scope.update();
     } else {
-      $scope.display = 'try again, you can do it ' + $scope.name + '!';
+      if ($scope.name) {
+        $scope.display = 'try again ' + $scope.name + '!';
+      } else {
+        $scope.display = 'nah, try again though!';
+      }
     }
     $scope.attempt = '';
   };
