@@ -38,7 +38,7 @@
             <br>
             <button ng-click="getScores()">Top Scores</button>
             <ol>
-              <li ng-repeat="leader in leaders | orderBy:'-score' | limitTo:5">{{leader.score}} : {{leader.name}} </li>
+              <li ng-repeat="leader in leaders | orderBy:'-score' | limitTo:10">{{leader.score}} : {{leader.name}} </li>
             </ol>
           </div>
 
